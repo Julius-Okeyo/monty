@@ -1,22 +1,30 @@
 #include "monty.h"
 /**
- * pstr - prints the string starting at the top of the stack,
- * followed by a new line.
+ * push - pushes new node to the end of the stack
  * @stack: double pointer to the head of the stack
  * @line_number: the number of a line of the file
  */
-void pstr(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack;
+	stack_t *node;
+	char *num;
 	
-	(void) line_number;
-	while (temp)
+	num = strtok(NULL, DELIMS);
+	if (num == NULL)
 	{
-		if (temp->n != 0 && isascii(temp->n))
-			putchar(temp->n);
-		else
-			break;
-		temp = temp->next;
+		printf("L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	putchar('\n');
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	node->n = atoi(num);
+	node->prev = NULL;
+	node->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = node;
+	*stack = node;
 }

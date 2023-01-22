@@ -2,7 +2,6 @@
 #define MONTY_H
 #include <stdlib.h>
 #include <stdio.h>
-#include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -37,6 +36,8 @@ typedef struct instruction_s
 }instruction_t;
 extern stack_t **global_head;
 void global_free(void);
+int isascii(int c);
+size_t getline (char **string, size_t *n, FILE *stream);
 void read_file(char *file, stack_t **stack);
 void parse_command(stack_t **stack, char *op, unsigned int line_num);
 void pop(stack_t **stack, unsigned int line_number);
