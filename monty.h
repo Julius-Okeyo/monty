@@ -3,6 +3,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
+#include <stdbool.h>
+#include <string.h>
+#define DELIMS "\n \r\t"
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
