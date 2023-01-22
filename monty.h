@@ -28,5 +28,9 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 }instruction_t;
+extern stack_t **global_head;
+void global_free(void);
+void read_file(char *file, stack_t **stack);
+void parse_command(stack_t **stack, char *op, unsigned int line_num);
 void pop(stack_t **stack, unsigned int line_number);
 #endif /*MONTY_H*/
